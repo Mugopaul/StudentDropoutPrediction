@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Student Dropout Prediction</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+
+   <style>
+    body {
+      background-color: #f6f9fc;
+      font-family: 'Arimo', sans-serif;
+    }
+    .login {
+      width: 400px;
+      margin: 50px auto;
+      padding: 30px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      font-family: 'Pacifico', cursive;
+      text-align: center;
+      color: #34495e;
+    }
+    input[type="text"], input[type="number"] {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #2ecc71;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #27ae60;
+    }
+    </style>
+</head>
+
+<body>
+  <div class="login">
+    <h1>Student Dropout Prediction</h1>
+
+    <form action="{{ url_for('predict') }}" method="post">
+      <input type="number" name="Marital status" placeholder="Marital status" required />
+      <input type="number" name="Application mode" placeholder="Application mode" required />
+      <input type="number" name="Application order" placeholder="Application order" required />
+      <input type="number" name="Course" placeholder="Course" required />
+      <input type="number" name="Daytime/evening attendance" placeholder="Daytime/evening attendance" required />
+      <input type="number" name="Previous qualification" placeholder="Previous qualification" required />
+      <input type="number" step="0.1" name="Previous qualification (grade)" placeholder="Previous qualification (grade)" required />
+      <input type="number" name="Nacionality" placeholder="Nacionality" required />
+      <input type="number" name="Mother's qualification" placeholder="Mother's qualification" required />
+      <input type="number" name="Father's qualification" placeholder="Father's qualification" required />
+      <input type="number" name="Mother's occupation" placeholder="Mother's occupation" required />
+      <input type="number" name="Father's occupation" placeholder="Father's occupation" required />
+      <input type="number" step="0.1" name="Admission grade" placeholder="Admission grade" required />
+      <input type="number" name="Displaced" placeholder="Displaced" required />
+      <input type="number" name="Educational special needs" placeholder="Educational special needs" required />
+      <input type="number" name="Debtor" placeholder="Debtor" required />
+      <input type="number" name="Tuition fees up to date" placeholder="Tuition fees up to date" required />
+      <input type="number" name="Gender" placeholder="Gender (1=Male, 0=Female)" required />
+      <input type="number" name="Scholarship holder" placeholder="Scholarship holder" required />
+      <input type="number" name="Age at enrollment" placeholder="Age at enrollment" required />
+      <input type="number" name="International" placeholder="International" required />
+      <input type="number" name="Curricular units 1st sem (credited)" placeholder="1st sem credited" required />
+      <input type="number" name="Curricular units 1st sem (enrolled)" placeholder="1st sem enrolled" required />
+      <input type="number" name="Curricular units 1st sem (evaluations)" placeholder="1st sem evaluations" required />
+      <input type="number" name="Curricular units 1st sem (approved)" placeholder="1st sem approved" required />
+      <input type="number" step="0.1" name="Curricular units 1st sem (grade)" placeholder="1st sem grade" required />
+      <input type="number" name="Curricular units 1st sem (without evaluations)" placeholder="1st sem without evaluations" required />
+      <input type="number" name="Curricular units 2nd sem (credited)" placeholder="2nd sem credited" required />
+      <input type="number" name="Curricular units 2nd sem (enrolled)" placeholder="2nd sem enrolled" required />
+      <input type="number" name="Curricular units 2nd sem (evaluations)" placeholder="2nd sem evaluations" required />
+      <input type="number" name="Curricular units 2nd sem (approved)" placeholder="2nd sem approved" required />
+      <input type="number" step="0.1" name="Curricular units 2nd sem (grade)" placeholder="2nd sem grade" required />
+      <input type="number" name="Curricular units 2nd sem (without evaluations)" placeholder="2nd sem without evaluations" required />
+      <input type="number" step="0.1" name="Unemployment rate" placeholder="Unemployment rate" required />
+      <input type="number" step="0.1" name="Inflation rate" placeholder="Inflation rate" required />
+      <input type="number" step="0.01" name="GDP" placeholder="GDP" required />
+
+
+
+      
+      
+      <button type="submit">Predict</button>
+    </form>
+
+    <br><br>
+
+    {% if prediction_text %}
+      <div style="text-align:center; font-weight: bold; font-size: 18px; color: #2c3e50;">
+        {{ prediction_text }}
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>

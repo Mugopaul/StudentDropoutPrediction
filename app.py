@@ -19,12 +19,23 @@ def predict_api():
     print(np.array(list(data.values())).reshape(1,-1))
     new_data=scalar.transform(np.array(list(data.values())).reshape(1,-1))
     output=model.predict(new_data)
-    print(output[0])
+    print(output)
     label_map = {0: 'Dropout', 1: 'Enrolled', 2: 'Graduate'}
-    prediction_label = label_map.get(int(output[0]), "Unknown")
+    prediction_label = label_map.get(int(output), "Unknown")
     return jsonify({'prediction': prediction_label})
     ##return jsonify({'prediction': output[0].item()})
     ##return jsonify(output[0])
+@app.route('/predict',methods=['POST'])
+def predict():
+    data=[float(x) for x in request.form.values()]
+    final_input=scalar.transform(np.array(data).reshape(1,-1))
+    print(final_input)
+    output=model.predict(final_input)[0]
+    label_map={0: 'Dropout', 1:'Enrolled', 2: 'Graduate'}
+    prediction_label = label_map.get(int(output), "Unknown")
+    return render_template("home.html",prediction_text=f"The Student is likely to {prediction_label}")
+ 
+ 
 
 if __name__=="__main__":
     app.run(debug=True)
